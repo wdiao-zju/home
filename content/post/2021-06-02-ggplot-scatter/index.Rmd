@@ -1,8 +1,8 @@
 ---
-title: ggplot-scatter
+title: "dasda大大"
 author: '刁文琦'
 date: '2021-06-02'
-slug: ggplot-scatter
+slug: 'ggplot-scatter'
 categories: ["R"]
 tags: ["R Markdown", "plot"]
 ---
@@ -21,7 +21,7 @@ opts_chunk$set(
   fig.pos = 'H')
 ```
 
-### 加载包
+### 加载包da
 ```{r}
 library(ggplot2)
 ```

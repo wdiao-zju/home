@@ -1,12 +1,11 @@
 ---
 title: ggplot-barplot
-author: ''
+author: '刁文琦'
 date: '2021-06-02'
 slug: barplot
 categories: []
 tags: []
 ---
-
 
 ```{r knitrOptions, include=FALSE}
 library(knitr)
