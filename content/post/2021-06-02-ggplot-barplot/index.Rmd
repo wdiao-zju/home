@@ -1,0 +1,55 @@
+---
+title: ggplot-barplot
+author: ''
+date: '2021-06-02'
+slug: barplot
+categories: []
+tags: []
+---
+
+
+```{r knitrOptions, include=FALSE}
+library(knitr)
+options(digits = 4, width = 80)
+opts_chunk$set(
+  echo = TRUE,
+  tidy = FALSE,
+  include = TRUE,
+  message = FALSE,
+  cache = TRUE,
+  dev = c("png"),
+  fig.width = 6, fig.height = 3.5,
+  dpi = 300,
+  fig.pos = "H"
+)
+```
+
+### load pkg
+```{r}
+library(ggplot2)
+library(dplyr)
+```
+
+### transform dataset
+```{r}
+iris %>% tibble::as_tibble()
+se <- function(x) sd(x) / sqrt(length(x))
+df_stat <- iris %>%
+  group_by(Species) %>%
+  summarise_at(
+    vars(Sepal.Length),
+    c(mean = mean, se = se)
+  )
+df_stat
+```
+
+## plot
+```{r}
+ggplot(df_stat, aes(Species, mean, fill = Species)) +
+  geom_errorbar(
+    aes(ymin = mean * 0.9, ymax = mean + se),
+    width = 0.2, size = 0.3
+  ) +
+  geom_col(color = "black", size = 0.3) +
+  theme_classic()
+```

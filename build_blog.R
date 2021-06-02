@@ -6,11 +6,11 @@
 # blogdown::new_site(theme = "yihui/hugo-xmin")
 blogdown::serve_site()
 
-post_name <- "ggplot-scatter"
-blogdown::new_post(post_name, ext = ".Rmd")
+post_name <- "ggplot-barplot"
+blogdown::new_post(post_name, ext = ".Rmd", slug = "barplot")
 blogdown::hugo_build()
 
 # blogdown::yaml2toml("config.yaml", "config.toml")
 blogdown::toml2yaml("config.toml", "config.yaml")
 blogdown::check_site()
-blogdown::config_netlify()
+# blogdown::config_netlify()

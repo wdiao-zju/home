@@ -1,0 +1,9 @@
+base
+pacman
+magrittr
+optparse
+myfun
+pryr
+knitr
+ggplot2
+dplyr
