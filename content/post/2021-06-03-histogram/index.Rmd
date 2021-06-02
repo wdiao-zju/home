@@ -1,0 +1,34 @@
+---
+title: R语言绘制直方图
+author: '刁文琦'
+date: '2021-06-03'
+slug: histogram
+categories: [R, plot]
+tags: []
+---
+
+```{r knitrOptions, include=FALSE}
+library(knitr)
+options(digits = 4, width = 80)
+opts_chunk$set(
+  echo = TRUE,
+  tidy = FALSE,
+  include = TRUE,
+  message = FALSE,
+  cache = TRUE,
+  dev = c('png'),
+  fig.width = 6, fig.height = 3.5,
+  dpi = 300, 
+  fig.pos = 'H')
+```
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+iris %>% tibble::as_tibble()
+ggplot(iris, aes(x = Sepal.Width, fill = Species)) +
+  geom_density(alpha = 0.5) +
+  theme_classic()
+```

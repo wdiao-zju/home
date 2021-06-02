@@ -7,17 +7,18 @@
 blogdown::serve_site()
 
 ## Rmd
-title_name <- "scatter"
-slug_name <- "scatter"
+title_name <- "histogram"
+slug_name <- "histogram"
 blogdown::new_post(title = title_name, slug = slug_name, ext = ".Rmd")
 
 ## md
 title_name <- "ubuntu-desktop"
 slug_name <- "ubuntu-desktop"
 blogdown::new_post(title = title_name, slug = slug_name, ext = ".md")
+
+## other
 # blogdown::yaml2toml("config.yaml", "config.toml")
 # blogdown::toml2yaml("config.toml", "config.yaml")
 # blogdown::check_site()
 # blogdown::config_netlify()
 # blogdown::hugo_build()
-
