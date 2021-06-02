@@ -10,6 +10,21 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
 languageCode = "en-us"
 enableEmoji = true
 
+[build]
+command = "hugo"
+publish = "public"
+[build.environment]
+HUGO_VERSION = "0.83.1"
+
+[context]
+[context.branch-deploy]
+command = "hugo -F -b $DEPLOY_PRIME_URL"
+[context.deploy-preview]
+command = "hugo -F -b $DEPLOY_PRIME_URL"
+[context.production]
+[context.production.environment]
+HUGO_ENV = "production"
+
 [markup]
 [markup.goldmark]
 [markup.goldmark.renderer]
