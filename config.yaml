@@ -3,6 +3,7 @@ CanonifyURLs: yes
 RelativeURLs: yes
 theme: hugo-xmin
 title: Blog of Wenqi Diao
+hasCJKLanguage: true
 disqusShortname: ''
 footnotereturnlinkcontents: ↩
 googleAnalytics: ''

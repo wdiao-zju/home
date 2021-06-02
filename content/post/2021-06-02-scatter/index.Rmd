@@ -1,11 +1,12 @@
 ---
-title: "dasda大大"
-author: '刁文琦'
+title: R语言绘制散点图
+author: ''
 date: '2021-06-02'
-slug: 'ggplot-scatter'
-categories: ["R"]
-tags: ["R Markdown", "plot"]
+slug: scatter
+categories: []
+tags: []
 ---
+
 
 ```{r knitrOptions, include=FALSE}
 library(knitr)
@@ -15,26 +16,22 @@ opts_chunk$set(
   tidy = FALSE,
   include = TRUE,
   message = FALSE,
+  cache = TRUE,
   dev = c('png'),
   fig.width = 6, fig.height = 3.5,
   dpi = 300, 
   fig.pos = 'H')
 ```
 
-### 加载包da
+### 加载包
 ```{r}
 library(ggplot2)
 ```
 
-### 查看数据集
+### 绘图
 ```{r}
 iris %>% tibble::as_tibble()
-```
-
-### 绘制散点图
-```{r}
-p <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+ggplot(iris, aes(Sepal.Length, Sepal.Width, fill = Species)) +
   geom_point() +
   theme_classic()
-p
 ```

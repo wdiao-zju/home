@@ -6,12 +6,18 @@
 # blogdown::new_site(theme = "yihui/hugo-xmin")
 blogdown::serve_site()
 
-title_name <- "ggplot-title"
-slug_name <- "ggplot-slug"
+## Rmd
+title_name <- "scatter"
+slug_name <- "scatter"
 blogdown::new_post(title = title_name, slug = slug_name, ext = ".Rmd")
-blogdown::hugo_build()
 
+## md
+title_name <- "ubuntu-desktop"
+slug_name <- "ubuntu-desktop"
+blogdown::new_post(title = title_name, slug = slug_name, ext = ".md")
 # blogdown::yaml2toml("config.yaml", "config.toml")
-blogdown::toml2yaml("config.toml", "config.yaml")
-blogdown::check_site()
+# blogdown::toml2yaml("config.toml", "config.yaml")
+# blogdown::check_site()
 # blogdown::config_netlify()
+# blogdown::hugo_build()
+
