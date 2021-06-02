@@ -1,0 +1,42 @@
+---
+title: ggplot-scatter
+author: '刁文琦'
+date: '2021-06-02'
+slug: ggplot-scatter
+categories: ["R"]
+tags: ["R Markdown", "plot"]
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="加载包" class="section level3">
+<h3>加载包</h3>
+<pre class="r"><code>library(ggplot2)</code></pre>
+</div>
+<div id="查看数据集" class="section level3">
+<h3>查看数据集</h3>
+<pre class="r"><code>iris %&gt;% tibble::as_tibble()</code></pre>
+<pre><code>## # A tibble: 150 x 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+##  1          5.1         3.5          1.4         0.2 setosa 
+##  2          4.9         3            1.4         0.2 setosa 
+##  3          4.7         3.2          1.3         0.2 setosa 
+##  4          4.6         3.1          1.5         0.2 setosa 
+##  5          5           3.6          1.4         0.2 setosa 
+##  6          5.4         3.9          1.7         0.4 setosa 
+##  7          4.6         3.4          1.4         0.3 setosa 
+##  8          5           3.4          1.5         0.2 setosa 
+##  9          4.4         2.9          1.4         0.2 setosa 
+## 10          4.9         3.1          1.5         0.1 setosa 
+## # … with 140 more rows</code></pre>
+</div>
+<div id="绘制散点图" class="section level3">
+<h3>绘制散点图</h3>
+<pre class="r"><code>p &lt;- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +
+  theme_classic()
+p</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="1800" /></p>
+</div>
