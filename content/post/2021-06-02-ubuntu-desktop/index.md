@@ -3,8 +3,8 @@ title: 建立ubuntu的远程桌面
 author: '刁文琦'
 date: '2021-06-02'
 slug: ubuntu-desktop
-categories: []
-tags: []
+categories: [linux]
+tags: [linux, desktop]
 ---
 
 ## 参考资料

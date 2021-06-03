@@ -1,14 +1,15 @@
 ## 域名地址
-"https://github.com/ShixiangWang/home"
 "https://wdiao-zju.netlify.app/"
+"https://github.com/wdiao-zju/home"
+"https://app.netlify.com/sites/wdiao-zju/overview"
 
 ## build
 # blogdown::new_site(theme = "yihui/hugo-xmin")
 blogdown::serve_site()
 
 ## Rmd
-title_name <- "histogram"
-slug_name <- "histogram"
+title_name <- "heatmap"
+slug_name <- "heatmap"
 blogdown::new_post(title = title_name, slug = slug_name, ext = ".Rmd")
 
 ## md

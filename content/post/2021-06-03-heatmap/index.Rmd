@@ -1,0 +1,34 @@
+---
+title: pheatmap绘制热图
+author: 'wdiao-zju'
+date: '2021-06-03'
+slug: heatmap
+categories: [heatmap]
+tags: [heatmap, R]
+---
+
+```{r knitrOptions, include=FALSE}
+options(digits = 4, width = 80)
+knitr::opts_chunk$set(
+  echo = TRUE,
+  tidy = FALSE,
+  include = TRUE,
+  message = FALSE,
+  dev = c('png'),
+  fig.width = 6, fig.height = 3.5,
+  dpi = 300, 
+  fig.pos = 'H')
+```
+
+# 加载包
+```{r}
+library(pheatmap)
+```
+
+# 展示数据集
+```{r}
+browseVignettes("pheatmap")
+```
+
+
+# 绘图
