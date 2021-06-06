@@ -1,0 +1,39 @@
+---
+title: R-forcats：调整因子变量
+author: 'wdiao-zju'
+date: '2021-06-06'
+slug: forcats
+categories: []
+tags: []
+---
+
+```{r knitrOptions, include=FALSE}
+options(digits = 4, width = 80)
+knitr::opts_chunk$set(
+  echo = TRUE,
+  tidy = FALSE,
+  include = TRUE,
+  message = FALSE,
+  dev = c('png'),
+  fig.width = 6, fig.height = 3.5,
+  dpi = 300, 
+  fig.pos = 'H')
+```
+
+# 加载包
+```{r}
+library(forcats)
+```
+
+# 展示数据集
+```{r}
+iris <- iris %>% as_tibble()
+iris
+# Species
+```
+
+
+# 绘图
+
+
+
