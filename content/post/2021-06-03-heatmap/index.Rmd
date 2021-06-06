@@ -14,21 +14,188 @@ knitr::opts_chunk$set(
   tidy = FALSE,
   include = TRUE,
   message = FALSE,
-  dev = c('png'),
+  dev = c("png"),
   fig.width = 6, fig.height = 3.5,
-  dpi = 300, 
-  fig.pos = 'H')
+  dpi = 300,
+  fig.pos = "H"
+)
 ```
 
-# 加载包
+## 加载包
 ```{r}
 library(pheatmap)
 ```
 
-# 展示数据集
+## 展示表达谱数据集
 ```{r}
-browseVignettes("pheatmap")
+set.seed(10)
+mat <- matrix(c(rnorm(50, mean = -5), rnorm(50, mean = 5)), nrow = 10, ncol = 10)
+colnames(mat) <- paste0("sample_", 1:10)
+rownames(mat) <- paste0("gene_", 1:10)
+mat[1:5, ]
 ```
 
+## 表达谱热图
+```{r}
+p <- pheatmap(mat,
+  cluster_rows = F,
+  border = "white",
+  legend_breaks = c(-6, 0, 6),
+  treeheight_col = 10,
+  angle_col = 45,
+  cellwidth = 18, cellheight = 20,
+  clustering_distance_cols = "euclidean",
+  cutree_cols = 3,
+  color = colorRampPalette(
+    c("navy", "white", "firebrick3")
+  )(100)
+)
+p
+```
 
-# 绘图
+## 添加注释信息
+```{r}
+## 注释列
+annotation_col <- data.frame(
+  Tissue = factor(rep(c("lung", "blood"), 5)),
+  Day = factor(rep(paste0("Day_", 1:5), each = 2))
+)
+rownames(annotation_col) <- colnames(mat)
+head(annotation_col)
+
+## 注释行
+annotation_row <- data.frame(
+  type = factor(rep(c("genome", "bacteria"), 5))
+)
+rownames(annotation_row) <- mat %>% rownames()
+head(annotation_row)
+
+pheatmap(mat,
+  annotation_col = annotation_col,
+  annotation_row = annotation_row,
+  show_rownames = F
+)
+```
+
+## 保存图片
+```{r} 
+png("result/pheatmap.png")
+p
+dev.off()
+```
+
+## 转化为ggplot2
+```{r}
+p_gg <- ggplotify::as.ggplot(p)
+p_gg
+ggplot2::ggsave("result/pheatmap2.png", p_gg, width = 5, height = 7)
+```
+
+## 相关性热图的数据准备
+```{r}
+mat_cor <- matrix(
+  runif(100, -1, 1), 10, 10
+)
+colnames(mat_cor) <- paste0("otu_", 1:10)
+rownames(mat_cor) <- paste0("feature_", 1:10)
+
+mat_p <- matrix(
+  runif(100, 0, 1), 10, 10
+)
+colnames(mat_p) <- paste0("otu_", 1:10)
+rownames(mat_p) <- paste0("feature_", 1:10)
+
+# mat_sig <- dplyr::case_when(
+#   mat_p < 0.05 ~ emojifont::emoji("star"),
+#   mat_p < 0.01 ~ emojifont::emoji("star") %>% paste0(., .),
+#   TRUE ~ ""
+# )
+mat_sig <- dplyr::case_when(
+  mat_p < 0.05 ~ "*",
+  mat_p < 0.01 ~ "**",
+  TRUE ~ ""
+)
+mat_sig <- matrix(mat_sig, nrow = nrow(mat_p), ncol = ncol(mat_p))
+```
+
+## 绘制相关性热图
+```{r}
+library(pheatmap)
+p <- pheatmap(mat_cor,
+  cluster_rows = F, cluster_cols = F,
+  cellheight = 15, cellwidth = 15, fontsize = 12,
+  display_numbers = mat_sig
+)
+p
+p2 <- ggplotify::as.ggplot(p, scale = F)
+ggplot2::ggsave("result/1.pdf", p2, width = 4, height = 4)
+```
+
+## ggheatmap
+```{r}
+library(ggheatmap)
+library(aplot)
+```
+
+```{r}
+set.seed(123)
+df <- matrix(runif(600, 0, 10), ncol = 12)
+colnames(df) <- paste("sample", 1:12, sep = "")
+rownames(df) <- sapply(1:50, function(x) paste(sample(LETTERS, 3, replace = F), collapse = ""))
+df %>% head()
+
+## 添加行注释
+row_metaData <- data.frame(
+  exprtype = sample(c("Up", "Down"), 50, replace = T),
+  genetype = sample(c("Metabolism", "Immune", "None"), 50, replace = T)
+)
+rownames(row_metaData) <- rownames(df)
+
+## 添加列注释
+col_metaData <- data.frame(
+  tissue = sample(c("Normal", "Tumor"), 12, replace = T),
+  risklevel = sample(c("High", "Low"), 12, replace = T)
+)
+rownames(col_metaData) <- colnames(df)
+
+## 自定义注释列的调色板
+exprcol <- c("#EE0000FF", "#008B45FF")
+names(exprcol) <- c("Up", "Down")
+genecol <- c("#EE7E30", "#5D9AD3", "#D0DFE6FF")
+names(genecol) <- c("Metabolism", "Immune", "None")
+tissuecol <- c("#98D352", "#FF7F0E")
+names(tissuecol) <- c("Normal", "Tumor")
+riskcol <- c("#EEA236FF", "#46B8DAFF")
+names(riskcol) <- c("High", "Low")
+col <- list(exprtype = exprcol, genetype = genecol, tissue = tissuecol, risklevel = riskcol)
+```
+```{r}
+ggheatmap <- ggheatmap(df,
+  cluster_rows = T, cluster_cols = T, scale = "row",
+  cluster_num = c(5, 3),
+  tree_color_rows = c("#3B4992FF", "#EE0000FF", "#008B45FF", "#631879FF", "#008280FF"),
+  tree_color_cols = c("#1F77B4FF", "#FF7F0EFF", "#2CA02CFF"),
+  annotation_rows = row_metaData,
+  annotation_cols = col_metaData,
+  annotation_color = col
+)
+ggheatmap
+
+## 构建拼图所需的文件
+dat <- data.frame(
+  marker = sample(c(1, NA), 50, replace = T),
+  gene = rownames(df),
+  shape = sample(c("T", "F"), 50, replace = T)
+)
+p <- ggplot(dat, aes(x = 1, y = gene, size = marker, color = shape, shape = shape)) +
+  geom_point() +
+  scale_color_manual(values = c("#D2691E", "#1E87D2")) +
+  theme_minimal() +
+  theme(line = element_blank(), axis.text = element_blank(), axis.title = element_blank()) +
+  guides(size = FALSE)
+p
+ggheatmap %>% insert_right(p, width = 0.1)
+```
+
+## complexheatmap
+这是终极的注释包
