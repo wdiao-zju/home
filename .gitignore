@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-public
+/result/
+/public/
+/resources/
 .vscode
-result

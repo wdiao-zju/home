@@ -7,7 +7,9 @@
 ```{r}
 # blogdown::new_site(theme = "yihui/hugo-xmin")
 blogdown::serve_site()
-blogdown::check_site()
+# blogdown::check_site()
+# blogdown::hugo_build()
+# blogdown::build_site(build_rmd = T)
 ```
 
 ## Rmd
@@ -28,7 +30,7 @@ blogdown::new_post(title = name, slug = name, ext = ".md")
 # blogdown::toml2yaml("config.toml", "config.yaml")
 
 # blogdown::config_netlify()
-blogdown::hugo_build()
+
 # install.packages("ggstatsplot")
 ```
 

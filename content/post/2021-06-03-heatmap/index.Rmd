@@ -79,16 +79,16 @@ pheatmap(mat,
 
 ## 保存图片
 ```{r} 
-png("result/pheatmap.png")
-p
-dev.off()
+# png("result/pheatmap.png")
+# p
+# dev.off()
 ```
 
 ## 转化为ggplot2
 ```{r}
 p_gg <- ggplotify::as.ggplot(p)
 p_gg
-ggplot2::ggsave("result/pheatmap2.png", p_gg, width = 5, height = 7)
+# ggplot2::ggsave("result/pheatmap2.png", p_gg, width = 5, height = 7)
 ```
 
 ## 相关性热图的数据准备
@@ -128,7 +128,7 @@ p <- pheatmap(mat_cor,
 )
 p
 p2 <- ggplotify::as.ggplot(p, scale = F)
-ggplot2::ggsave("result/1.pdf", p2, width = 4, height = 4)
+# ggplot2::ggsave("result/1.pdf", p2, width = 4, height = 4)
 ```
 
 ## ggheatmap
@@ -194,7 +194,7 @@ p <- ggplot(dat, aes(x = 1, y = gene, size = marker, color = shape, shape = shap
   theme(line = element_blank(), axis.text = element_blank(), axis.title = element_blank()) +
   guides(size = FALSE)
 p
-ggheatmap %>% insert_right(p, width = 0.1)
+# ggheatmap %>% insert_right(p, width = 0.1)
 ```
 
 ## complexheatmap
