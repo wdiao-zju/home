@@ -10,7 +10,6 @@ blogdown::serve_site()
 blogdown::check_site()
 ```
 
-
 ## Rmd
 ```{r}
 name <- "R-regular-expression"
@@ -29,7 +28,7 @@ blogdown::new_post(title = name, slug = name, ext = ".md")
 # blogdown::toml2yaml("config.toml", "config.yaml")
 
 # blogdown::config_netlify()
-# blogdown::hugo_build()
+blogdown::hugo_build()
 # install.packages("ggstatsplot")
 ```
 
