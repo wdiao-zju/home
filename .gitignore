@@ -3,6 +3,6 @@
 .RData
 .Ruserdata
 public
-# static/figures
 .vscode
 result
+README.Rmd

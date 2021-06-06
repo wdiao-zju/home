@@ -7,6 +7,7 @@
 ```{r}
 # blogdown::new_site(theme = "yihui/hugo-xmin")
 blogdown::serve_site()
+blogdown::check_site()
 ```
 
 
@@ -26,13 +27,9 @@ blogdown::new_post(title = name, slug = name, ext = ".md")
 ```{r}
 # blogdown::yaml2toml("config.yaml", "config.toml")
 # blogdown::toml2yaml("config.toml", "config.yaml")
-# blogdown::check_site()
+
 # blogdown::config_netlify()
 # blogdown::hugo_build()
 # install.packages("ggstatsplot")
-statsExpressions::iris_long
-
-ggstatsplot::iris_long
-
 ```
 
